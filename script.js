@@ -11,10 +11,10 @@ const iniciarOuPausarBt = document.querySelector("#start-pause span");
 const alterarImagemBt = document.querySelector("#start-pause img");
 const tempoNaTela = document.querySelector("#timer");
 
-const musica = new Audio("/sons/luna-rise-part-one.mp3");
-const audioPlay = new Audio("/sons/play.wav");
-const audioPause = new Audio("/sons/pause.mp3");
-const audioTempoFinalizado = new Audio("/sons/beep.mp3");
+const musica = new Audio("./sons/luna-rise-part-one.mp3");
+const audioPlay = new Audio("./sons/play.wav");
+const audioPause = new Audio("./sons/pause.mp3");
+const audioTempoFinalizado = new Audio("./sons/beep.mp3");
 
 let tempoDecorridoEmSegundos = 1500;
 let intervaloId = null;
@@ -36,7 +36,7 @@ focoBt.addEventListener("click", () => {
 });
 
 curtoBt.addEventListener("click", () => {
-  tempoDecorridoEmSegundos = 300
+  tempoDecorridoEmSegundos = 5
   alterarContexto("descanso-curto");
   curtoBt.classList.add("active");
 });
@@ -50,12 +50,12 @@ longoBt.addEventListener("click", () => {
 function alterarContexto(contexto) {
   mostrarTempo()
   zerar();
-  alterarImagemBt.src = "/imagens/play_arrow.png";
+  alterarImagemBt.src = "./imagens/play_arrow.png";
   botoes.forEach(function (contexto) {
     contexto.classList.remove("active");
   });
   html.setAttribute("data-contexto", contexto);
-  banner.setAttribute("src", `/imagens/${contexto}.png`);
+  banner.setAttribute("src", `./imagens/${contexto}.png`);
   switch (contexto) {
     case "foco":
       titulo.innerHTML = `Otimize sua produtividade,<br>
@@ -95,12 +95,12 @@ function iniciarOuPausar() {
   }
   audioPlay.play()
   intervaloId = setInterval(contagemRegressiva, 1000);
-  alterarImagemBt.src = "/imagens/pause.png";
+  alterarImagemBt.src = "./imagens/pause.png";
   iniciarOuPausarBt.textContent = "Pausar";
 }
 
 function zerar() {
-  alterarImagemBt.src = "/imagens/play_arrow.png";
+  alterarImagemBt.src = "./imagens/play_arrow.png";
   iniciarOuPausarBt.textContent = "Começar";
   clearInterval(intervaloId);
   intervaloId = null;
